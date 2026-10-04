@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f3ee">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<title>Temaasq — сайты, дизайн и визуал с помощью ИИ</title>
+<meta name="description" content="Temaasq создаёт сайты, интерфейсы и фирменный стиль с помощью ИИ и дорабатывает результат вручную. Цены, сроки и условия — на сайте.">
+<meta property="og:title" content="Temaasq — сайты, дизайн и визуал с помощью ИИ">
+<meta property="og:description" content="Сайты, интерфейсы и брендинг с помощью ИИ и ручной доработкой.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23ff4d22'/><text x='50' y='70' font-size='58' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'>T</text></svg>">
+<style>
+:root{
+  --bg:#f5f3ee; --surface:#fffefa; --ink:#121210; --muted:#696760;
+  --line:rgba(18,18,16,.13); --accent:#ff4d22; --accent-text:#c9330c; --accent2:#ffb18f;
+  --dark:#11110f; --display:'Space Grotesk',Arial,sans-serif;
+  --body:'Manrope',Arial,sans-serif; --radius:28px;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+::selection{background:var(--accent);color:#fff}
+
+.wrap{width:min(1240px,calc(100% - 40px));margin:auto}
+header{
+  position:sticky;top:0;z-index:30;height:76px;display:flex;align-items:center;
+  border-bottom:1px solid var(--line);background:rgba(245,243,238,.82);
+  backdrop-filter:blur(18px)
+}
+.nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font:700 21px var(--display);text-decoration:none;letter-spacing:-.04em}
+.logo span{color:var(--accent)}
+nav{display:flex;gap:30px}
+nav a{text-decoration:none;color:var(--muted);font-weight:600;font-size:15px}
+nav a:hover{color:var(--ink)}
+
+.hero{min-height:calc(100svh - 76px);display:flex;align-items:center;padding:80px 0 100px}
+.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:70px;align-items:end}
+.eyebrow{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:25px}
+.dot{width:8px;height:8px;border-radius:50%;background:#35b96f;box-shadow:0 0 0 5px rgba(53,185,111,.12)}
+h1{font:700 clamp(52px,8.4vw,116px)/.94 var(--display);letter-spacing:-.065em;max-width:900px}
+h1 em{font-style:normal;color:var(--accent)}
+.hero-copy{padding-bottom:7px}
+.hero-copy p{font-size:19px;line-height:1.55;color:var(--muted);max-width:430px;margin-bottom:28px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 23px;border-radius:999px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;transition:.2s transform,.2s background}
+.btn:hover{transform:translateY(-2px);background:var(--accent)}
+.btn.light{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.light:hover{background:var(--surface)}
+
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;color:var(--muted);font-size:15px}
+.trust-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.trust strong{color:var(--ink)}
+
+.section{padding:115px 0}
+.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:45px}
+.kicker{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--accent-text);margin-bottom:12px}
+h2{font:700 clamp(34px,5vw,66px)/1 var(--display);letter-spacing:-.055em}
+.section-head p{max-width:370px;color:var(--muted)}
+
+.projects{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.project{
+  position:relative;min-height:540px;border-radius:var(--radius);overflow:hidden;
+  text-decoration:none;background:#ddd;isolation:isolate
+}
+.project:nth-child(1){grid-column:span 7}
+.project:nth-child(2){grid-column:span 5}
+.project:nth-child(3){grid-column:span 5}
+.project:nth-child(4){grid-column:span 7}
+.visual{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.visual:before,.visual:after{content:"";position:absolute;border-radius:50%;filter:blur(2px)}
+.v1{background:linear-gradient(135deg,#ff4d22,#ff9d66)}
+.v1:before{width:420px;height:420px;background:#ffd7c5;right:-130px;top:-130px}
+.v1:after{width:300px;height:300px;background:#c9250a;left:-120px;bottom:-120px}
+.v2{background:linear-gradient(145deg,#f3c55c,#fff0b9)}
+.v2:before{width:360px;height:360px;background:#fff8dc;left:-120px;top:-120px}
+.v3{background:linear-gradient(145deg,#f4b9aa,#fff2e8)}
+.v3:before{width:400px;height:400px;background:#ffd7cc;right:-160px;bottom:-150px}
+.v4{background:linear-gradient(135deg,#211612,#9d472e)}
+.v4:before{width:420px;height:420px;background:#d66a48;right:-160px;top:-170px}
+.mock{
+  position:relative;z-index:2;width:min(72%,390px);padding:24px;border-radius:25px;
+  background:rgba(255,255,255,.88);box-shadow:0 28px 80px rgba(0,0,0,.2);
+  transform:rotate(-4deg);backdrop-filter:blur(12px);transition:transform .45s cubic-bezier(.2,.8,.2,1)
+}
+.mock.wide{width:min(78%,510px);transform:rotate(3deg)}
+.project:nth-child(2) .mock{transform:rotate(5deg)}
+.project:nth-child(3) .mock{transform:rotate(-3deg)}
+.mock-head{display:flex;justify-content:space-between;font-size:12px;font-weight:800;margin-bottom:20px}
+.mock-lines{display:grid;gap:9px}
+.mock-lines i{display:block;height:11px;border-radius:20px;background:rgba(18,18,16,.12)}
+.mock-lines i:nth-child(1){width:72%;height:34px;background:var(--ink)}
+.mock-lines i:nth-child(2){width:92%}
+.mock-lines i:nth-child(3){width:62%}
+.mock-boxes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.mock-boxes i{height:92px;border-radius:15px;background:rgba(18,18,16,.08)}
+.project:nth-child(1)::before{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;z-index:3;background:linear-gradient(transparent,rgba(0,0,0,.38))}
+.cap{font-size:12px;font-weight:700;color:var(--muted)}
+.big{font:700 34px var(--display);letter-spacing:-.04em;line-height:1.1}
+.bars{display:flex;align-items:end;gap:8px;height:84px;margin-top:14px}
+.bars i{flex:1;border-radius:8px 8px 3px 3px;background:var(--accent)}
+.prog{height:10px;border-radius:9px;background:rgba(18,18,16,.1);margin-top:6px}
+.prog b{display:block;width:64%;height:100%;border-radius:9px;background:var(--ink)}
+.logo-row{display:flex;align-items:center;gap:14px}
+.logo-mark{width:64px;height:64px;border-radius:50%;background:var(--ink);color:#f3c55c;display:grid;place-items:center;font:700 30px var(--display)}
+.swatches{display:flex;gap:8px;margin-top:18px}
+.swatches i{width:38px;height:38px;border-radius:50%;border:1px solid rgba(18,18,16,.15)}
+.site-h{font:700 24px/1.1 var(--display);letter-spacing:-.04em;margin:4px 0 12px}
+.pill{display:inline-block;padding:8px 16px;border-radius:999px;background:var(--ink);color:#fff;font-size:12px;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.stats div{background:rgba(18,18,16,.07);border-radius:12px;padding:10px;font-size:12px;font-weight:700;color:var(--muted)}
+.stats b{display:block;font:700 22px var(--display);color:var(--ink)}
+
+.project-label{position:absolute;z-index:4;left:26px;right:26px;bottom:24px;display:flex;justify-content:space-between;align-items:end;color:#fff}
+.project:nth-child(2) .project-label,.project:nth-child(3) .project-label{color:var(--ink)}
+.project-title{font:700 25px var(--display);letter-spacing:-.035em}
+.project-type{font-size:14px;font-weight:700;opacity:.75;margin-top:4px}
+.arrow{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.18);backdrop-filter:blur(8px);font-size:20px}
+.project:nth-child(2) .arrow,.project:nth-child(3) .arrow{background:rgba(18,18,16,.08)}
+.project:hover .mock{transform:rotate(0) scale(1.03)}
+
+.page-wm{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.04;overflow:hidden}
+.page-wm svg{width:100%;height:100%}
+.page-wm text{fill:var(--ink);font:700 18px var(--body)}
+.project::after{content:"";position:absolute;inset:-30%;z-index:3;pointer-events:none;opacity:.16;transform:rotate(-24deg);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='90'><text x='0' y='55' font-family='Arial' font-size='17' font-weight='700' fill='white'>© Temaasq</text></svg>")}
+.project:nth-child(2)::after,.project:nth-child(3)::after{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='90'><text x='0' y='55' font-family='Arial' font-size='17' font-weight='700' fill='%23121210'>© Temaasq</text></svg>")}
+
+.services{background:var(--dark);color:#f5f3ee;border-radius:36px;padding:70px}
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid rgba(255,255,255,.16)}
+.service{padding:30px 0;border-bottom:1px solid rgba(255,255,255,.16);display:grid;grid-template-columns:70px 1fr;gap:20px}
+.service:nth-child(odd){padding-right:35px;border-right:1px solid rgba(255,255,255,.16)}
+.service:nth-child(even){padding-left:35px}
+.num{color:var(--accent);font:700 14px var(--display)}
+.service h3{font:600 24px var(--display);margin-bottom:8px}
+.service p{color:#aaa8a0;max-width:430px}
+
+.process{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px}
+.process-list{border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:60px 1fr;gap:15px;padding:25px 0;border-bottom:1px solid var(--line)}
+.step-num{font-weight:800;color:var(--accent-text)}
+.step h3{font:600 22px var(--display);margin-bottom:4px}
+.step p{color:var(--muted)}
+
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.price{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+.price h3{font:600 22px var(--display)}
+.price .sum{font:700 36px var(--display);letter-spacing:-.05em;margin:16px 0 4px}
+.price .time{color:var(--accent-text);font-weight:700;margin-bottom:14px}
+.price p{color:var(--muted)}
+.rights{margin-top:18px;padding:32px;border-radius:var(--radius);border:1px dashed rgba(18,18,16,.3);display:grid;grid-template-columns:.7fr 1.3fr;gap:40px}
+.rights h3{font:600 24px var(--display)}
+.rights ul{padding-left:20px;display:grid;gap:10px;color:var(--muted)}
+.price-note{margin-top:16px;color:var(--muted)}
+@media(max-width:850px){.price-grid,.rights{grid-template-columns:1fr;gap:18px}}
+
+.about{display:grid;grid-template-columns:.7fr 1.3fr;gap:80px;border-top:1px solid var(--line);padding-top:80px}
+.about-copy{font-size:22px;line-height:1.45;max-width:720px}
+.about-copy strong{color:var(--accent-text)}
+.tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
+.tag{padding:9px 15px;border:1px solid var(--line);border-radius:999px;font-size:14px;font-weight:700;background:var(--surface)}
+
+.contact{padding:85px 0 110px}
+.contact-box{background:#d4380f;color:#fff;border-radius:36px;padding:70px;display:flex;justify-content:space-between;gap:50px;align-items:end}
+.contact h2{max-width:700px}
+.contact p{max-width:370px;margin-bottom:25px;color:#ffe6dd}
+.contact .btn{background:#fff;color:var(--ink)}
+.contact .btn:hover{background:var(--ink);color:#fff}
+
+footer{padding:25px 0 35px;border-top:1px solid var(--line);color:var(--muted);font-size:15px}
+.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+dialog{overflow:hidden;max-height:calc(100dvh - 24px);border:0;border-radius:30px;padding:0;width:min(680px,calc(100% - 30px));background:var(--surface);color:var(--ink);box-shadow:0 35px 100px rgba(0,0,0,.3)}
+dialog[open]{display:flex;flex-direction:column}
+dialog::backdrop{background:rgba(10,10,9,.68);backdrop-filter:blur(7px)}
+.modal-top{flex:none;height:170px;display:flex;align-items:end;padding:25px;background:linear-gradient(135deg,#ff4d22,#ff9d66);color:#fff}
+.modal-top.v2{background:linear-gradient(145deg,#f3c55c,#fff0b9);color:var(--ink)}
+.modal-top.v3{background:linear-gradient(145deg,#f4b9aa,#fff2e8);color:var(--ink)}
+.modal-top.v4{background:linear-gradient(135deg,#211612,#9d472e)}
+.modal-top h3{font:700 48px var(--display);letter-spacing:-.06em}
+.modal-body{padding:30px;display:grid;gap:22px;align-content:start;overflow-y:auto;min-height:0;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.modal-body h4{font:700 25px var(--display)}
+.modal-body p{color:var(--muted)}
+.modal-body dl{display:grid;gap:15px}
+.modal-body dt{font-weight:800;font-size:15px}
+.modal-body dd{color:var(--muted);margin-top:3px}
+.close{position:absolute;right:15px;top:15px;width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.85);cursor:pointer;font-size:22px}
+
+@media(max-width:850px){
+  .hero-grid,.process,.about{grid-template-columns:1fr;gap:45px}
+  .hero{min-height:auto;padding:75px 0}
+  .projects{display:grid;grid-template-columns:1fr}
+  .project,.project:nth-child(n){grid-column:auto;min-height:470px}
+  .services{padding:40px 25px}
+  .services-grid{grid-template-columns:1fr}
+  .service:nth-child(odd){padding-right:0;border-right:0}
+  .service:nth-child(even){padding-left:0}
+  .contact-box{padding:45px 30px;display:block}
+  .contact-box .actions{margin-top:25px}
+}
+@media(max-width:600px){
+  .wrap{width:min(100% - 28px,1240px)}
+  header{height:68px}
+  nav{gap:16px} nav a:nth-child(2),nav a:nth-child(4){display:none}
+  h1{font-size:clamp(46px,15vw,72px)}
+  .hero-copy p{font-size:17px}
+  .section{padding:75px 0}
+  .section-head{display:block}
+  .section-head p{margin-top:18px}
+  .project{min-height:390px!important}
+  .project-label{left:20px;right:20px;bottom:18px}
+  .project-title{font-size:20px}
+  .services{border-radius:25px}
+  .service{grid-template-columns:45px 1fr}
+  .service h3{font-size:20px}
+  .about-copy{font-size:19px}
+  .modal-top{height:130px}.modal-top h3{font-size:36px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page-wm" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><defs><pattern id="wm" width="340" height="220" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)"><text x="20" y="120">© Temaasq</text></pattern></defs><rect width="100%" height="100%" fill="url(#wm)"/></svg></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">Temaasq<span>.</span></a>
+    <nav aria-label="Основное меню">
+      <a href="#works">Работы</a>
+      <a href="#services">Услуги</a>
+      <a href="#pricing">Цены</a>
+      <a href="#about">Обо мне</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Открыт для новых проектов</div>
+      <h1>Сайты и визуал, <em>понятные с первого экрана.</em></h1>
+    </div>
+    <div class="hero-copy">
+      <p>Создаю сайты, интерфейсы и визуальные решения с помощью ИИ — быстро, аккуратно и с ручной доработкой каждого результата.</p>
+      <div class="actions">
+        <a class="btn" href="#works">Смотреть работы</a>
+        <a class="btn light" href="#contact">Обсудить проект</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap trust-row">
+    <span><strong>ИИ</strong> — инструмент, а не замена специалисту</span>
+    <span><strong>UI, сайты, брендинг</strong></span>
+    <span>От идеи до готового результата</span>
+  </div>
+</div>
+
+<section class="section" id="works">
+<div class="wrap">
+  <div class="section-head">
+    <div><div class="kicker">01 / Избранное</div><h2>Работы</h2></div>
+    <p>Мои собственные концепты, а не заказы клиентов: так я показываю подход и стиль. Нажмите на проект, чтобы увидеть процесс.</p>
+  </div>
+
+  <div class="projects">
+    <div class="project" role="button" tabindex="0" data-id="orbit">
+      <div class="visual v1">
+        <div class="mock">
+          <div class="mock-head"><span>ORBIT</span><span>ГЛАВНАЯ</span></div>
+          <div class="cap">Баланс</div><div class="big">48 250 ₽</div>
+          <div class="bars"><i style="height:35%"></i><i style="height:55%"></i><i style="height:42%"></i><i style="height:78%"></i><i style="height:62%"></i><i style="height:92%"></i></div>
+          <div class="cap" style="margin-top:14px">Цель: отпуск, 64%</div><div class="prog"><b></b></div>
+        </div>
+      </div>
+      <div class="project-label"><div><div class="project-title">Orbit</div><div class="project-type">Концепт · Мобильное приложение</div></div><span class="arrow">↗</span></div>
+    </div>
+
+    <div class="project" role="button" tabindex="0" data-id="mira">
+      <div class="visual v2">
+        <div class="mock">
+          <div class="mock-head"><span>MIRA</span><span>БРЕНД</span></div>
+          <div class="logo-row"><div class="logo-mark">M</div><div><div class="big" style="font-size:26px">Mira</div><div class="cap">кофейня</div></div></div>
+          <div class="swatches"><i style="background:#11110f"></i><i style="background:#f3c55c"></i><i style="background:#ff4d22"></i><i style="background:#fff0b9"></i></div>
+        </div>
+      </div>
+      <div class="project-label"><div><div class="project-title">Mira</div><div class="project-type">Концепт · Брендинг и упаковка</div></div><span class="arrow">↗</span></div>
+    </div>
+
+    <div class="project" role="button" tabindex="0" data-id="leaf">
+      <div class="visual v3">
+        <div class="mock">
+          <div class="mock-head"><span>LEAF</span><span>МАГАЗИН</span></div>
+          <div class="site-h">Натуральное для дома</div><span class="pill">В каталог</span>
+          <div class="mock-boxes"><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="project-label"><div><div class="project-title">Leaf</div><div class="project-type">Концепт · Сайт магазина</div></div><span class="arrow">↗</span></div>
+    </div>
+
+    <div class="project" role="button" tabindex="0" data-id="nord">
+      <div class="visual v4">
+        <div class="mock wide">
+          <div class="mock-head"><span>NORD / ПАНЕЛЬ</span><span>ОНЛАЙН</span></div>
+          <div class="stats"><div><b>128</b>заказов</div><div><b>12</b>в пути</div><div><b>3</b>задержки</div></div>
+          <svg viewBox="0 0 300 80" width="100%" aria-hidden="true"><polyline points="0,62 40,48 80,54 120,30 160,38 200,18 240,26 300,8" fill="none" stroke="#c9330c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="project-label"><div><div class="project-title">Nord</div><div class="project-type">Концепт · Панель данных</div></div><span class="arrow">↗</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="services">
+<div class="wrap">
+  <div class="services">
+    <div class="kicker">02 / Что делаю</div>
+    <h2 style="margin-bottom:45px">Услуги</h2>
+    <div class="services-grid">
+      <article class="service"><div class="num">01</div><div><h3>Сайты</h3><p>Лендинги, портфолио и небольшие веб-проекты с адаптацией под телефон.</p></div></article>
+      <article class="service"><div class="num">02</div><div><h3>UI / UX</h3><p>Интерфейсы приложений, сервисов и личных кабинетов с понятной структурой.</p></div></article>
+      <article class="service"><div class="num">03</div><div><h3>Брендинг</h3><p>Логотипы, визуальные направления, упаковка и единый стиль проекта.</p></div></
